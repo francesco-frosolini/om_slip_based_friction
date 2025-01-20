@@ -11,7 +11,6 @@ model Wheel "mass-less slipping wheel" extends Modelica.Mechanics.Rotational.Int
   parameter SI.Mass m=100 "Used just to compute vertical load, fz=m*g+dynLoad. Inertia and mass must also be attached to the flanges.";
   final constant SI.Acceleration g=Modelica.Constants.g_n;
   final constant Real eps=1e8*Modelica.Constants.eps;
-  protected Modelica.Blocks.Interfaces.RealInput internalDynLoad;
   
   SI.Velocity vT;
   SI.Velocity vP;
@@ -21,22 +20,23 @@ model Wheel "mass-less slipping wheel" extends Modelica.Mechanics.Rotational.Int
   Real ux=contactPoint_a.ux;
   SI.Force fz(min=0);
   SI.Force fx;
+  protected Modelica.Blocks.Interfaces.RealInput internalDynLoad;
 equation
 
   wR = der(flangeR.phi - internalSupportR.phi);
-  vT = der(flangeT.s - internalSupportT.s);
-  vT + vP - wR*R = 0; //sign convention: wR positive if rolling to the right, like in the std library
+  vT = der(flangeT.s - internalSupportT.s); 
+  vT + vP - wR*R = 0; //sign convention: wR positive if rolling in the positive direction (rotating clockwise), like in the std library
+//--> slip is positive if accelerating (second case, vP=wR*radius-vT > 0)
 
   //den for slip normalization
-  den = max(abs(vT),abs(wR*R)); //smooth(0, if noEvent(abs(vT)>abs(wR*R)) then abs(vT) else abs(wR*R));
+  den = max(abs(vT),abs(wR*R));
 
-  //slip is positive if accelerating (second case, vP=wR*radius-vT > 0)
   slip = smooth(0,if noEvent(den>eps) then vP/den else vP/eps);
   
   //force and torque balance
   connect(internalDynLoad, dynLoad);
   connect(internalDynLoad, noLoad.y);
-  fz = if useDynLoad then m*g+internalDynLoad else m*g;
+  fz =-m*g+internalDynLoad;
   fx=-contactPoint_a.ux*fz;
   fx + flangeT.f = 0;
   flangeR.tau - fx*R = 0;

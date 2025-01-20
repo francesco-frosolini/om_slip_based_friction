@@ -34,5 +34,6 @@ equation
   connect(add.y, accelerate.a_ref) annotation(
     Line(points = {{-34, 0}, {-28, 0}}, color = {0, 0, 127}));
   annotation(
-    experiment(StartTime = 0, StopTime = 18, Tolerance = 1e-06, Interval = 0.036));
+    experiment(StartTime = 0, StopTime = 18, Tolerance = 1e-06, Interval = 0.036),
+  Documentation(info = "<html><head></head><body><p><br></p></body></html>"));
 end PureRollingTest;

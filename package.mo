@@ -5,5 +5,6 @@ package ABS
   import Modelica.Mechanics.Translational;
   
   annotation(
-    uses(Modelica(version = "4.0.0")));
+    uses(Modelica(version = "4.0.0")),
+  Documentation(info = "<html><head></head><body><div>Simple OpenModelica library which simulates longitudinal slip and braking/accelerating forces of a single corner model and controls it with ABS.</div><div><br></div></body></html>"));
 end ABS;

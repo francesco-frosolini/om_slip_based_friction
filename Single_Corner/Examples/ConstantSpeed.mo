@@ -8,7 +8,7 @@ model ConstantSpeed
     Placement(transformation(origin = {-42, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Translational.Sources.QuadraticSpeedDependentForce AeroDrag(f_nominal = -60, v_nominal = 30)  annotation(
     Placement(transformation(origin = {90, 0}, extent = {{10, -10}, {-10, 10}})));
-  Modelica.Blocks.Sources.Ramp ramp(height = -55/wheel.R, startTime = 2, duration = 15, offset = 60/wheel.R)  annotation(
+  Modelica.Blocks.Sources.Ramp ramp(height = -55/wheel.R, startTime = 10, duration = 15, offset = 60/wheel.R)  annotation(
     Placement(transformation(origin = {-120, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Rotational.Sources.Torque torque annotation(
     Placement(transformation(origin = {-78, 0}, extent = {{-10, -10}, {10, 10}})));
