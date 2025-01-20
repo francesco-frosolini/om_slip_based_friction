@@ -1,0 +1,19 @@
+within ABS.Single_Corner;
+
+function burckhardt
+
+input Real slip;
+output Real ux;
+
+protected
+parameter Real theta[3] = {1.28, 10, 0.52} "dry asphalt parameters for the Burckhardt curve";
+
+algorithm
+if slip>0 then
+  ux:=theta[1]*(1-exp(-theta[2]*slip))-slip*theta[3];
+else
+  ux:=-theta[1]*(1-exp(theta[2]*slip))-slip*theta[3];
+end if;
+  
+
+end burckhardt;

@@ -1,0 +1,6 @@
+within ABS;
+
+model FuzzyController
+equation
+
+end FuzzyController;

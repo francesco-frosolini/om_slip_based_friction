@@ -1,0 +1,28 @@
+within ABS.Single_Corner.Examples;
+
+model Overbraking
+  extends Modelica.Icons.Example;
+  Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 10, phi(start = 0, fixed = true)) annotation(
+    Placement(transformation(origin = {-42, 20}, extent = {{-10, -10}, {10, 10}})));
+  Modelica.Mechanics.Translational.Components.Mass mass(m = 200, v(start = 30, fixed = true), s(fixed = true))  annotation(
+    Placement(transformation(origin = {42, 20}, extent = {{-10, -10}, {10, 10}})));
+  Wheel wheel(radius = 0.3)  annotation(
+    Placement(transformation(origin = {0, 20}, extent = {{-22, -22}, {22, 22}})));
+  SlipFrictionForce slipFrictionForce  annotation(
+    Placement(transformation(origin = {-1, -29}, extent = {{-25, -25}, {25, 25}})));
+  Modelica.Mechanics.Rotational.Sources.Torque brake annotation(
+    Placement(transformation(origin = {-81, 19}, extent = {{-15, -15}, {15, 15}})));
+  Modelica.Blocks.Sources.Step step(height = -20, startTime = 1)  annotation(
+    Placement(transformation(origin = {-142, 20}, extent = {{-10, -10}, {10, 10}})));
+equation
+  connect(wheel.flangeR, inertia.flange_b) annotation(
+    Line(points = {{-22, 20}, {-32, 20}}));
+  connect(wheel.flangeT, mass.flange_a) annotation(
+    Line(points = {{22, 20}, {32, 20}}, color = {0, 127, 0}));
+  connect(wheel.contactPoint_a, slipFrictionForce.contactPoint_b) annotation(
+    Line(points = {{0, 2.4}, {0, -3.6}}));
+  connect(brake.flange, inertia.flange_a) annotation(
+    Line(points = {{-66, 20}, {-52, 20}}));
+  connect(brake.tau, step.y) annotation(
+    Line(points = {{-98, 20}, {-131, 20}}, color = {0, 0, 127}));
+end Overbraking;

@@ -1,0 +1,19 @@
+within ABS;
+
+model Functions
+  extends Modelica.Icons.FunctionsPackage;
+
+  function Saturate
+    extends Modelica.Icons.Function;
+    input Real y ;
+    input Real y_abs_max "max value = - min value";
+    output Real y_sat "saturated output";
+  
+  algorithm
+  //ux = noEvent(if abs(slip)<eps then 0 else sign(slip)*u_s);
+    y_sat := if abs(y)<y_abs_max then y else sign(y)*y_abs_max;
+    
+  end Saturate;
+equation
+
+end Functions;
