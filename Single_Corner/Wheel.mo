@@ -16,7 +16,7 @@ model Wheel "mass-less slipping wheel" extends Modelica.Mechanics.Rotational.Int
   SI.Velocity vP;
   SI.AngularVelocity wR;
   SI.Velocity den;
-  SI.Force fx;
+  SI.Force fx=contactPoint_a.f;
   Modelica.Mechanics.Translational.Interfaces.Flange_a flangeL annotation(
     Placement(transformation(origin = {-68, -70}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-80, -60}, extent = {{-10, -10}, {10, 10}})));
   protected Modelica.Blocks.Interfaces.RealInput internalDynLoad;

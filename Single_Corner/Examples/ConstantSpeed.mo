@@ -29,6 +29,8 @@ equation
     Line(points = {{-20, 0}, {-32, 0}}));
   connect(wheel.contactPoint_a, burckhardtFriction.contactPoint_b) annotation(
     Line(points = {{0, -16}, {0, -44}}));
+  connect(burckhardtFriction.flange_b, wheel.flangeL) annotation(
+    Line(points = {{-16, -60}, {-16, -12}}, color = {0, 127, 0}));
   annotation(
     experiment(StartTime = 0, StopTime = 300, Tolerance = 1e-9),
     Diagram);

@@ -1,6 +1,6 @@
 within ABS.Single_Corner.Interfaces;
 
-partial model PartialGround "Base model for a longitudinal friction force using a contact point and a vertical flange connector"
+partial model PartialGroundLongitudinalFriction "Base model for a longitudinal friction force using a contact point and a vertical flange connector"
 
   ContactPoint_b contactPoint_b annotation(
     Placement(transformation(origin = {-8, 94}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {0, 80}, extent = {{-20, -20}, {20, 20}})));
@@ -20,5 +20,5 @@ annotation(
     HideResult = true,
     choices(checkBox = true),
     Icon(graphics = {Line(origin = {0, -10}, points = {{-78, 80}, {51, 80}}, color = {95, 127, 95}), Polygon(origin = {0, -10}, lineColor = {95, 127, 95}, fillColor = {95, 127, 95}, fillPattern = FillPattern.Solid, points = {{81, 80}, {51, 90}, {51, 70}, {81, 80}}), Line(origin = {0, 100}, points = {{-20, 0}, {20, 0}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 6), Line(origin = {0, 100}, points = {{-100, -120}, {-100, -80}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 6)}),
-    Documentation(info = "<html><head></head><body><span style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">Basic model for a friction force&nbsp;</span></body></html>"));
-end PartialGround;
+    Documentation(info = "<html><head></head><body><span style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">Base model for a friction force component using one flange for vertical load and a contact point connector for longitudinal friction force. The sign conventions utilized are denoted in the icon layer.</span><div><font face=\"DejaVu Sans Mono\"><br></font><div><font face=\"DejaVu Sans Mono\">The ground is assumed to be solid (flange_b.s=0) and the relationship between longitudinal friction and vertical load linear (fx=ux*fz).</font></div><div><font face=\"DejaVu Sans Mono\"><br></font><div><span style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">Child models must define a relationship between the friction coefficient ux and slip, i.e. slip=0 (ux=any) for an ideal \"pure rolling without slipping\" friction model</span></div></div></div></body></html>"));
+end PartialGroundLongitudinalFriction;

@@ -13,7 +13,7 @@ model Overbraking
   Modelica.Mechanics.Rotational.Sources.Speed speed(f_crit = 10) annotation(
     Placement(transformation(origin = {-44, 0}, extent = {{-10, -10}, {10, 10}})));
   BurckhardtFriction burckhardtFriction annotation(
-    Placement(transformation(origin = {26, -48}, extent = {{-20, -20}, {20, 20}})));
+    Placement(transformation(origin = {28, -48}, extent = {{-20, -20}, {20, 20}})));
 equation
   connect(wheel.flangeR, inertia.flange_b) annotation(
     Line(points = {{8, 0}, {-2, 0}}));
@@ -24,7 +24,9 @@ equation
   connect(speed.w_ref, ramp.y) annotation(
     Line(points = {{-56, 0}, {-63.5, 0}, {-63.5, -2}, {-71, -2}}, color = {0, 0, 127}));
   connect(wheel.contactPoint_a, burckhardtFriction.contactPoint_b) annotation(
-    Line(points = {{28, -16}, {28, -23}, {26, -23}, {26, -32}}));
+    Line(points = {{28, -16}, {28, -32}}));
+  connect(wheel.flangeL, burckhardtFriction.flange_b) annotation(
+    Line(points = {{12, -12}, {12, -48}}, color = {0, 127, 0}));
   annotation(
     experiment(StopTime = 10, Tolerance = 1e-9),
     Diagram);
