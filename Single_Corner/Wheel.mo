@@ -14,13 +14,13 @@ model Wheel "mass-less slipping wheel" extends Modelica.Mechanics.Rotational.Int
   
   SI.Velocity vT;
   SI.Velocity vP;
-  SI.Velocity den;
   SI.AngularVelocity wR;
-  Real slip=contactPoint_a.slip;
-  Real ux=contactPoint_a.ux;
-  SI.Force fz(min=0);
+  SI.Velocity den;
   SI.Force fx;
+  Modelica.Mechanics.Translational.Interfaces.Flange_a flangeL annotation(
+    Placement(transformation(origin = {-68, -70}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-80, -60}, extent = {{-10, -10}, {10, 10}})));
   protected Modelica.Blocks.Interfaces.RealInput internalDynLoad;
+
 equation
 
   wR = der(flangeR.phi - internalSupportR.phi);
@@ -31,28 +31,16 @@ equation
   //den for slip normalization
   den = max(abs(vT),abs(wR*R));
 
-  slip = smooth(0,if noEvent(den>eps) then vP/den else vP/eps);
+  contactPoint_a.slip = smooth(0,if noEvent(den>eps) then vP/den else vP/eps);
   
   //force and torque balance
   connect(internalDynLoad, dynLoad);
   connect(internalDynLoad, noLoad.y);
-  fz =-m*g+internalDynLoad;
-  fx=-contactPoint_a.ux*fz;
+  flangeL.f =-m*g+internalDynLoad;
   fx + flangeT.f = 0;
   flangeR.tau - fx*R = 0;
-//  w=der(flangeR.phi);
-//  v=der(flangeT.s);
-//  flangeR.tau-fx*R=0;
-//  flangeT.f+fx=0;
-//  fx=-ux*fz;
-//  fz = if useDynLoad then -m*g+dynLoad else -m*g;
-//  //slip = if v<w*R and v>eps then (w*R-v)/(w*R) else if w*R<v and w*R<eps then (w*R-v)/v else 0;
-//  slip = (w*R - v) / noEvent(max({abs(v), abs(w*R), eps}));
-//  //when still --> ill conditioned
-//  //if accelerating and not still then v-wR/v else if braking and not still v-wR/wR else (still)=0
-  
   
 
 annotation(
-    Icon(graphics = {Ellipse(fillColor = {192, 191, 188}, fillPattern = FillPattern.Sphere, extent = {{-80, 80}, {80, -80}}), Ellipse(fillColor = {154, 153, 150},fillPattern = FillPattern.Solid, extent = {{-60, 60}, {60, -60}})}));
+    Icon(graphics = {Ellipse(fillColor = {192, 191, 188}, fillPattern = FillPattern.Sphere, extent = {{-80, 80}, {80, -80}}), Ellipse(fillColor = {154, 153, 150}, fillPattern = FillPattern.Solid, extent = {{-60, 60}, {60, -60}}), Line(origin = {0, 40}, points = {{-100, -120}, {-100, -80}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 6)}));
 end Wheel;

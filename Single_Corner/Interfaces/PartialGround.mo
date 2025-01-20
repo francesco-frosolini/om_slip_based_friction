@@ -1,16 +1,19 @@
 within ABS.Single_Corner.Interfaces;
 
-partial model PartialGround "Base model for a friction force using a contact point connector"
+partial model PartialGround "Base model for a longitudinal friction force using a contact point and a vertical flange connector"
 
   ContactPoint_b contactPoint_b annotation(
     Placement(transformation(origin = {-8, 94}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {0, 80}, extent = {{-20, -20}, {20, 20}})));
-
-  Real ux = contactPoint_b.u "longitudinal friction coefficient for the reaction force";
-  Real slip = contactPoint_b.slip;
   Modelica.Mechanics.Translational.Interfaces.Flange_b flange_b annotation(
     Placement(transformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {-80, 0}, extent = {{-10, -10}, {10, 10}})));
+    
+  SI.Force fx = contactPoint_b.f "longitudinal friction (reaction) force";
+  SI.Force fz = flange_b.f "load force";
+  Real ux "friction force coefficient";
+  Real slip = contactPoint_b.slip;
 equation
-  
+  flange_b.s=0 "solid ground, the rolling body stays attached";
+  fx=-ux*fz;
 
 annotation(
     Evaluate = true,
