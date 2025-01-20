@@ -1,7 +1,7 @@
 within ABS.Single_Corner;
 
 model DryFriction
-  extends Interfaces.PartialSlipFriction;
+  extends Interfaces.PartialGround;
   parameter Real u_s(min=0, max=1) = 0.85 "static friction coefficient";
   parameter Real u_d(min=0, max=1) = 0.65 "dynamic friction coefficient";
   final constant Real eps=1e10*Modelica.Constants.eps;

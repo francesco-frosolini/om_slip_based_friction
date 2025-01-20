@@ -1,7 +1,7 @@
 within ABS.Single_Corner;
 
 model BurckhardtFriction
-  extends Interfaces.PartialSlipFriction;
+  extends Interfaces.PartialGround;
   parameter Real theta[3] = {0.86, 33.82, 0.35} "parameters for the Burckhardt curve, default is wet asphalt";
   //how can I implement a dictionary?
 equation
