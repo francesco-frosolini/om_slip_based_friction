@@ -12,7 +12,7 @@ model ConstantSpeed
     Placement(transformation(origin = {-120, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Rotational.Sources.Torque torque annotation(
     Placement(transformation(origin = {-78, 0}, extent = {{-10, -10}, {10, 10}})));
-  Wheel wheel(R=0.3,m= 250) annotation(
+  Wheel wheel(R=0.3,m= 250, useDynLoad = false) annotation(
     Placement(transformation(extent = {{-20, -20}, {20, 20}})));
   BurckhardtFriction burckhardtFriction(roadType = ABS.Single_Corner.RoadTypes.RoadType.dryAsphalt)  annotation(
     Placement(transformation(origin = {0, -60}, extent = {{-20, -20}, {20, 20}})));
