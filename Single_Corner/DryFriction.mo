@@ -7,7 +7,7 @@ model DryFriction
   final constant Real eps=1e10*Modelica.Constants.eps;
 equation
   
-  ux = if abs(slip)<eps then slip*u_s/eps else sign(slip)*(u_d);
+  ux = if abs(slip)<eps then -slip*u_s/eps else -sign(slip)*(u_d);
 
   //slip=0 while ux<=u_s;
   

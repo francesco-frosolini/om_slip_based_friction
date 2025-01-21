@@ -14,7 +14,7 @@ model LoadTransfer
     Placement(transformation(origin = {-40, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Rotational.Sources.Speed speed annotation(
     Placement(transformation(origin = {-70, 0}, extent = {{-10, -10}, {10, 10}})));
-  Modelica.Blocks.Sources.Ramp ramp(offset = v0/wheelR, startTime = 1, height = -v0/wheelR, duration = 4)  annotation(
+  Modelica.Blocks.Sources.Ramp ramp(offset = v0/wheelR, startTime = 1, height = -v0/wheelR, duration = 6)  annotation(
     Placement(transformation(origin = {-104, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Translational.Sources.QuadraticSpeedDependentForce aereoDrag(f_nominal = -60, v_nominal = 30)  annotation(
     Placement(transformation(origin = {106, 38}, extent = {{16, -16}, {-16, 16}})));
