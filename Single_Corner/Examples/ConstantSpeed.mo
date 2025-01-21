@@ -1,7 +1,7 @@
 within ABS.Single_Corner.Examples;
 
 model ConstantSpeed
-  extends Modelica.Icons.Example;
+  extends Modelica.Icons.Example;  
   Modelica.Mechanics.Translational.Components.Mass mass(m = wheel.m, s(fixed = true, start = 0), v(start = 0, fixed = true)) annotation(
     Placement(transformation(origin = {48, 0}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Rotational.Components.Inertia inertia(J = 1.25, phi(start = 0, fixed = true), w(start = 0, fixed = true)) annotation(
@@ -14,7 +14,7 @@ model ConstantSpeed
     Placement(transformation(origin = {-78, 0}, extent = {{-10, -10}, {10, 10}})));
   Wheel wheel(R=0.3,m= 250) annotation(
     Placement(transformation(extent = {{-20, -20}, {20, 20}})));
-  BurckhardtFriction burckhardtFriction annotation(
+  BurckhardtFriction burckhardtFriction(roadType = ABS.Single_Corner.RoadTypes.RoadType.dryAsphalt)  annotation(
     Placement(transformation(origin = {0, -60}, extent = {{-20, -20}, {20, 20}})));
 equation
   connect(mass.flange_b, AeroDrag.flange) annotation(
@@ -33,5 +33,6 @@ equation
     Line(points = {{-16, -60}, {-16, -12}}, color = {0, 127, 0}));
   annotation(
     experiment(StartTime = 0, StopTime = 300, Tolerance = 1e-9),
-    Diagram);
+    Diagram,
+  Documentation(info = "<html><head></head><body>Example of the non zero slip required to mantain a constant velocity when aerodynamic drag is considered.</body></html>"));
 end ConstantSpeed;

@@ -1,6 +1,6 @@
 within ABS.Single_Corner;
 
-model Wheel "mass-less slipping wheel" extends Modelica.Mechanics.Rotational.Interfaces.PartialElementaryRotationalToTranslational;
+model Wheel extends Modelica.Mechanics.Rotational.Interfaces.PartialElementaryRotationalToTranslational;
   parameter Boolean useDynLoad = false "Enables dynLoad input connector";
   Interfaces.ContactPoint_a contactPoint_a annotation(
     Placement(transformation(origin = {4, -88}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {0, -80}, extent = {{-20, -20}, {20, 20}})));
@@ -42,5 +42,6 @@ equation
   
 
 annotation(
-    Icon(graphics = {Ellipse(fillColor = {192, 191, 188}, fillPattern = FillPattern.Sphere, extent = {{-80, 80}, {80, -80}}), Ellipse(fillColor = {154, 153, 150}, fillPattern = FillPattern.Solid, extent = {{-60, 60}, {60, -60}}), Line(origin = {0, 40}, points = {{-100, -120}, {-100, -80}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 6)}));
+    Icon(graphics = {Ellipse(fillColor = {192, 191, 188}, fillPattern = FillPattern.Sphere, extent = {{-80, 80}, {80, -80}}), Ellipse(fillColor = {154, 153, 150}, fillPattern = FillPattern.Solid, extent = {{-60, 60}, {60, -60}}), Line(origin = {0, 40}, points = {{-100, -120}, {-100, -80}}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 6), Line(origin = {-20, -80}, points = {{20, 0}, {-40, 0}}, color = {95, 127, 95}, thickness = 1, arrow = {Arrow.None, Arrow.Filled}, arrowSize = 10)}),
+  Documentation(info = "<html><head></head><body>Wheel component with connectors for the rotational and translational flanges to drive the wheel, a vertical<div><p style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">This is a 1-dim. rotational component with</p><ul style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\"><li>connectors for the flanges used to transform rotational into translational motion</li><li>optional supports/housings for those connectors</li><li>a ContactPoint connector for longitudinal slip</li><li>a Flange connector for the vertical load</li><li>an optional RealInput for dynamical vertical load</li></ul><p style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">The vertical load is computed as m*g if useDynLoad is false, otherwise fz=m*g+dynLoad.</p><p style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">The slip is equal to (slipping speed) vP = wR*R-vT (wheel speed - body speed) normalized by the biggest between wR*R and vT, so it is always true that -1&lt;=slip&lt;=1.</p><p style=\"font-family: 'DejaVu Sans Mono'; font-size: 12px;\">The slip is positive when fx is positive, i.e. when the vehicle is accelerating, and viceversa.</p></div></body></html>"));
 end Wheel;

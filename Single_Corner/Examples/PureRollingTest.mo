@@ -37,5 +37,5 @@ equation
     Line(points = {{36, -14}, {34, -14}, {34, -46}}, color = {0, 127, 0}));
   annotation(
     experiment(StartTime = 0, StopTime = 18, Tolerance = 1e-06, Interval = 0.036),
-  Documentation(info = "<html><head></head><body><p><br></p></body></html>"));
+  Documentation(info = "<html><head></head><body><p>Example displaying the pure rolling condition of the DryFriction model.</p></body></html>"));
 end PureRollingTest;
