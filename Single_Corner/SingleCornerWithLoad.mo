@@ -3,10 +3,11 @@ within ABS.Single_Corner;
 model SingleCornerWithLoad
 
   parameter SI.Mass wheelMass;
+  parameter SI.Length wheelR;
   parameter SI.Inertia wheelInertia;
   parameter RoadTypes.RoadType road;
 
-  Wheel wheel(useDynLoad = true, m=wheelMass)  annotation(
+  Wheel wheel(useDynLoad = true, m=wheelMass,R=wheelR)  annotation(
     Placement(transformation(origin = {0, 20}, extent = {{-20, -20}, {20, 20}})));
   BurckhardtFriction burckhardtFriction(roadType=road) annotation(
     Placement(transformation(origin = {0, -24}, extent = {{-20, -20}, {20, 20}})));

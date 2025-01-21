@@ -12,7 +12,7 @@ model Overbraking
     Placement(transformation(origin = {-82, -2}, extent = {{-10, -10}, {10, 10}})));
   Modelica.Mechanics.Rotational.Sources.Speed speed(f_crit = 10, phi(fixed = false)) annotation(
     Placement(transformation(origin = {-44, 0}, extent = {{-10, -10}, {10, 10}})));
-  BurckhardtFriction burckhardtFriction(roadType = ABS.Single_Corner.RoadTypes.RoadType.wetAsphalt)  annotation(
+  BurckhardtFriction burckhardtFriction(roadType = ABS.Single_Corner.RoadTypes.RoadType.wetAsphalt) annotation(
     Placement(transformation(origin = {28, -48}, extent = {{-20, -20}, {20, 20}})));
 equation
   connect(wheel.flangeR, inertia.flange_b) annotation(
@@ -28,7 +28,7 @@ equation
   connect(wheel.flangeL, burckhardtFriction.flange_b) annotation(
     Line(points = {{12, -12}, {12, -48}}, color = {0, 127, 0}));
   annotation(
-    experiment(StopTime = 10, Tolerance = 1e-9),
+    experiment(StopTime = 10, Tolerance = 1e-09, StartTime = 0, Interval = 0.02),
     Diagram,
-  Documentation(info = "<html><head></head><body>Example of the overbraking caused by the shape of the friction-slip curve surpassing the peak friction point and making the system unstable</body></html>"));
+    Documentation(info = "<html><head></head><body>Example of the overbraking caused by the shape of the friction-slip curve surpassing the peak friction point and making the system unstable</body></html>"));
 end Overbraking;

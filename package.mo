@@ -3,6 +3,8 @@ package ABS
   import Modelica.Units.SI;
   import Modelica.Mechanics.Rotational;
   import Modelica.Mechanics.Translational;
+  constant Modelica.Units.SI.Acceleration g = 9.81 "gravitational acceleration constant";
+
   
   annotation(
     uses(Modelica(version = "4.0.0")),

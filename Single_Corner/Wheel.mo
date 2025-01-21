@@ -6,9 +6,9 @@ model Wheel extends Modelica.Mechanics.Rotational.Interfaces.PartialElementaryRo
     Placement(transformation(origin = {4, -88}, extent = {{-10, -10}, {10, 10}}), iconTransformation(origin = {0, -80}, extent = {{-20, -20}, {20, 20}})));
   Modelica.Blocks.Interfaces.RealInput dynLoad if useDynLoad annotation(
     Placement(transformation(origin = {8, 58}, extent = {{-20, -20}, {20, 20}}), iconTransformation(origin = {0, 100}, extent = {{-10, -10}, {10, 10}}, rotation = -90)));
-  Modelica.Blocks.Sources.Constant noLoad(k=0) if not useDynLoad;
+  Modelica.Blocks.Sources.Constant constLoad(k=m*g) if not useDynLoad;
   parameter SI.Length R=1 "Wheel radius in meters";
-  parameter SI.Mass m=100 "Used just to compute vertical load, fz=m*g+dynLoad. Inertia and mass must also be attached to the flanges.";
+  parameter SI.Mass m=100 "Used just to compute vertical load, fz=m*g if useDynLoad=False. A mass (and inertia) must also be attached to the flange.";
   final constant SI.Acceleration g=Modelica.Constants.g_n;
   final constant Real eps=1e8*Modelica.Constants.eps;
   
@@ -35,8 +35,8 @@ equation
   
   //force and torque balance
   connect(internalDynLoad, dynLoad);
-  connect(internalDynLoad, noLoad.y);
-  flangeL.f =-m*g+internalDynLoad;
+  connect(internalDynLoad, constLoad.y);
+  flangeL.f = internalDynLoad;
   fx + flangeT.f = 0;
   flangeR.tau - fx*R = 0;
   
