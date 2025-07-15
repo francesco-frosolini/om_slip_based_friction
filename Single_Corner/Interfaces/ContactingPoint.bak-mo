@@ -1,6 +1,0 @@
-within ABS.Vehicle_Dynamics.Interfaces;
-
-connector ContactingPoint
-  flow SI.Force f;
-  Real slip(min=0,max=1);
-end ContactingPoint;
